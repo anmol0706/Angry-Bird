@@ -43,10 +43,15 @@ jobs:
           autoconf \
           automake \
           libtool \
+          libtool-bin \
           gettext \
           autopoint \
           libffi-dev \
-          pkg-config
+          pkg-config \
+          make
+    
+    - name: Clean Buildozer directory
+      run: rm -rf .buildozer
     
     - name: Install Python dependencies
       run: |
@@ -54,23 +59,11 @@ jobs:
         pip install Cython==0.29.33
         pip install --upgrade buildozer
     
-    - name: Cache Buildozer global directory
-      uses: actions/cache@v3
-      with:
-        path: .buildozer_global
-        key: buildozer-global-${{ hashFiles('buildozer.spec') }}
-    
-    - name: Cache Buildozer directory
-      uses: actions/cache@v3
-      with:
-        path: .buildozer
-        key: ${{ runner.os }}-${{ hashFiles('buildozer.spec') }}
-    
     - name: Build APK with Buildozer
       run: |
         # Set SDK license acceptance
         export ANDROID_SDK_ROOT=/usr/lib/android-sdk
-        yes | buildozer -v android debug
+        buildozer -v android debug
     
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
