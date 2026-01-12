@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-apk:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     
     steps:
     - name: Checkout code
@@ -44,7 +44,9 @@ jobs:
           automake \
           libtool \
           gettext \
-          autopoint
+          autopoint \
+          libffi-dev \
+          pkg-config
     
     - name: Install Python dependencies
       run: |
