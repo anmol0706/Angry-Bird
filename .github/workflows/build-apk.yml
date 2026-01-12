@@ -42,7 +42,9 @@ jobs:
           zlib1g-dev \
           autoconf \
           automake \
-          libtool
+          libtool \
+          gettext \
+          autopoint
     
     - name: Install Python dependencies
       run: |
