@@ -39,12 +39,15 @@ jobs:
           libswscale-dev \
           libavformat-dev \
           libavcodec-dev \
-          zlib1g-dev
+          zlib1g-dev \
+          autoconf \
+          automake \
+          libtool
     
     - name: Install Python dependencies
       run: |
         pip install --upgrade pip
-        pip install --upgrade cython==0.29.36
+        pip install Cython==0.29.33
         pip install --upgrade buildozer
     
     - name: Cache Buildozer global directory
